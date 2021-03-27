@@ -2,8 +2,10 @@
     <div class="container py-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($posts as $post)
-                <article class="w:full h-80 bg-cover bg-center @if($loop->first) md:col-span-2  @endif" style="background-image: url({{$post->image->url}})">
-                    {{-- <img src="{{Storage::url($post->image->url)}}" alt=""> --}}
+                {{-- <article class="w:full h-80 bg-cover bg-center @if($loop->first) md:col-span-2  @endif" style="background-image: url(@if ($post->image) {{$post->image->url}} @else https://cdn.pixabay.com/photo/2021/01/21/09/11/river-5936684_960_720.jpg @endif)"> --}}
+
+                <article class="w:full h-80 bg-cover bg-center @if($loop->first) md:col-span-2  @endif" style="background-image: url(@if ($post->image) {{Storage::url($post->image->url)}} @else https://cdn.pixabay.com/photo/2021/01/21/09/11/river-5936684_960_720.jpg @endif)">
+
                     <div class="v-full h-full px-8 flex flex-col justify-center">
                         <div>
                             @foreach ($post->tags as $tag)
