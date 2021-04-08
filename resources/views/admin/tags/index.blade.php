@@ -3,7 +3,9 @@
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <a href="{{ route('admin.tags.create', ) }}" class="btn btn-secondary btn-sm float-right">Nueva etiqueta</a>
+    @can('admin.tags.create')
+        <a href="{{ route('admin.tags.create', ) }}" class="btn btn-secondary btn-sm float-right">Nueva etiqueta</a>
+    @endcan
 
     <h1>Mostrar listado de etiqueta</h1>
 @stop
@@ -34,14 +36,18 @@
                             <td scope="row">{{$tag->id}}</td>
                             <td scope="row">{{$tag->name}}</td>
                             <td scope="row" width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.tags.edit', $tag)}}">Editar</a>
+                                @can('admin.tags.edit')
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.tags.edit', $tag)}}">Editar</a>
+                                @endcan
                             </td>
                             <td scope="row" width="10px">
-                                <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
-                                    @method("delete")
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                </form>
+                                @can('admin.tags.destroy')
+                                    <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
+                                        @method("delete")
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

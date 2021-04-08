@@ -3,7 +3,7 @@
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <h1>Detalle del post</h1>
+    <h1>Mostrar rol</h1>
 @stop
 
 @section('content')
